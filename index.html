@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0e1330">
+<title>Naresh Kumar | Mechanical Engineer</title>
+<meta name="description" content="Mechanical engineer with 11 years in production, operations and maintenance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- Tokens ---------- */
+:root {
+  --paper: #f2f4fb;
+  --card: #ffffff;
+  --ink: #0e1330;
+  --steel: #5a6280;
+  --line: #d5d9ea;
+  --accent: #1f6bff;
+  --spark: #ffc61a;
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 6px;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body { margin: 0; overflow-x: clip; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.65 var(--body); }
+h1, h2, h3 { font-family: var(--display); line-height: 1; margin: 0; letter-spacing: .01em; }
+h2 { font-size: clamp(2rem, 5vw, 2.75rem); margin-bottom: 1rem; }
+h3 { font-size: 1.5rem; }
+p { margin: 0 0 1rem; max-width: 68ch; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.wrap { width: 100%; max-width: 1800px; margin-inline: auto; padding-inline: clamp(1.25rem, 4vw, 4rem); }
+section { padding: 2.75rem 0; }
+.ic { width: 1.5em; height: 1.5em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- Nav ---------- */
+.nav { position: sticky; top: 0; z-index: 10; background: rgba(242, 244, 251, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.logo { font: 800 1.5rem var(--display); text-decoration: none; display: flex; align-items: center; gap: .5rem; }
+.logo .ic { color: var(--accent); }
+.nav ul { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; font-weight: 500; }
+.nav a:not(.logo) { text-decoration: none; color: var(--steel); }
+.nav a:not(.logo):hover { color: var(--ink); }
+
+/* ---------- Buttons ---------- */
+.btn { display: inline-flex; align-items: center; gap: .6rem; padding: .75rem 1.25rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; border: 2px solid var(--ink); transition: transform .2s, background .2s, color .2s; }
+.btn:hover { transform: translateY(-2px); }
+.btn.solid { background: var(--ink); color: #fff; }
+.btn.solid:hover { background: var(--accent); border-color: var(--accent); }
+.btn.ghost:hover { background: var(--ink); color: #fff; }
+
+/* ---------- Hero ---------- */
+.hero { position: relative; overflow: hidden; padding: 2.5rem 0 3rem; background:
+  linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 40px 40px,
+  linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 40px 40px; }
+.hero-in { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.name { width: min(100%, 900px); margin: 0; }
+.name svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* The name is "cut" like a CNC toolpath: outline draws, then fills */
+.cut { --to: var(--ink); font: 800 150px var(--display); text-anchor: middle; fill: transparent; stroke: var(--ink); stroke-width: 2; stroke-dasharray: 900; stroke-dashoffset: 900;
+  animation: cut 2.2s cubic-bezier(.5, 0, .2, 1) forwards, fill-in .7s 2s forwards; }
+.cut.hot { --to: var(--accent); stroke: var(--accent); animation: cut 2.2s .5s cubic-bezier(.5, 0, .2, 1) forwards, fill-in .7s 2.5s forwards; }
+@keyframes cut { to { stroke-dashoffset: 0; } }
+@keyframes fill-in { to { fill: var(--to); } }
+
+.bg-gear { position: absolute; z-index: 0; fill-rule: evenodd; translate: calc(var(--mx, 0) * -18px) calc(var(--my, 0) * -18px); transition: translate .3s ease-out; }
+.bg-gear.g1 { width: min(46vw, 460px); left: -8%; bottom: -14%; fill: var(--ink); opacity: .08; }
+.bg-gear.g2 { width: min(30vw, 300px); right: -4%; top: -6%; fill: var(--spark); opacity: .55; }
+.bg-gear .spin { animation: spin 40s linear infinite; }
+.bg-gear.g2 .spin { animation: spin-rev 24s linear infinite; }
+
+.role { font-size: 1.25rem; color: var(--steel); margin: 1rem auto 1.5rem; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; }
+.role, .actions { animation: rise .8s cubic-bezier(.2, .7, .2, 1) both; }
+.role { animation-delay: .15s; }
+.actions { animation-delay: .3s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes spin-rev { to { transform: rotate(-360deg); } }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+
+/* ---------- Stats ---------- */
+.stats { padding: 0; background: var(--ink); color: #fff; }
+.stats .wrap { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; }
+.stat { padding: 1.25rem 1rem; border-left: 1px solid rgba(255, 255, 255, .15); }
+.stat:first-child { border-left: 0; }
+.stat b { display: block; font: 800 clamp(2.5rem, 7vw, 4rem) var(--display); line-height: 1; }
+.stat span { color: #bcc4e6; font-size: .95rem; }
+
+/* ---------- Cards & grids ---------- */
+.grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.card { position: relative; overflow: hidden; isolation: isolate; display: flex; flex-direction: column; gap: .7rem; padding: 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 1px 2px rgba(14, 19, 48, .06); }
+.card::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .25s; background: radial-gradient(260px circle at var(--x, 50%) var(--y, 0%), rgba(31, 107, 255, .16), transparent 70%); }
+.card::after { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; transition: transform .35s; }
+.card.reveal { transition: opacity .6s, transform .25s, box-shadow .25s, border-color .25s; }
+.card.reveal.in:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 18px 40px -18px rgba(14, 19, 48, .4); }
+.card:hover::before { opacity: 1; }
+.card:hover::after { transform: scaleX(1); }
+.card .ic { box-sizing: content-box; width: 1.6rem; height: 1.6rem; padding: .8rem; border-radius: 14px; background: rgba(31, 107, 255, .1); color: var(--accent); transition: background .25s, color .25s, transform .4s; }
+.card:hover .ic { background: var(--accent); color: #fff; transform: rotate(-8deg) scale(1.06); }
+.card h3 { font-size: 1.35rem; margin-bottom: .3rem; }
+.card p { margin: 0; color: var(--steel); font-size: .95rem; line-height: 1.5; }
+#projects .card h3 { margin: 0; font-size: 1.7rem; }
+
+/* Bento layout: a few wide cards, one dark feature card */
+.bento { grid-template-columns: repeat(4, 1fr); grid-auto-flow: dense; }
+.bento .card:nth-child(1), .bento .card:nth-child(4), .bento .card:nth-child(5), .bento .card:nth-child(8) { grid-column: span 2; }
+.bento .card:first-child { background: var(--ink); border-color: var(--ink); color: #fff; }
+.bento .card:first-child p { color: #bcc4e6; }
+.bento .card:first-child .ic { background: rgba(255, 255, 255, .12); color: #fff; }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; list-style: none; margin: 0; }
+.chips li { background: var(--card); border: 1px solid var(--line); border-radius: 99px; padding: .35rem .9rem; font-size: .95rem; font-weight: 500; }
+
+/* ---------- Experience ---------- */
+.about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: start; }
+.gauge { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; text-align: center; }
+.gauge svg { width: 100%; max-width: 280px; }
+.gauge .track, .gauge .fill { fill: none; stroke-width: 14; stroke-linecap: round; }
+.gauge .track { stroke: var(--line); }
+.gauge .fill { stroke: var(--accent); stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1.8s cubic-bezier(.2, .7, .2, 1); }
+.gauge.in .fill { stroke-dashoffset: 10; }
+.gauge text { font: 800 38px var(--display); fill: var(--ink); text-anchor: middle; }
+.gauge small { color: var(--steel); display: block; }
+
+.path { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: 1.5rem; font-weight: 600; }
+.path i { color: var(--accent); font-style: normal; }
+.path span { background: var(--ink); color: #fff; padding: .4rem .9rem; border-radius: var(--radius); }
+.path span:last-child { background: var(--accent); }
+
+.timeline { position: relative; padding-left: 2rem; border-left: 2px dashed var(--steel); }
+.job { position: relative; margin-bottom: 1.25rem; padding: 1.25rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 1px 2px rgba(14, 19, 48, .06); }
+.job::before { content: ""; position: absolute; left: -2.65rem; top: 1.7rem; width: 1.1rem; height: 1.1rem; background: var(--paper); border: 3px solid var(--accent); border-radius: 50%; }
+.job time { color: var(--steel); font-weight: 500; }
+.job h3 { margin: .25rem 0; padding-right: 5rem; }
+.job ul { padding-left: 1.2rem; margin: .75rem 0 0; }
+.job li { margin-bottom: .4rem; max-width: 70ch; }
+.job h4 { margin: 1.25rem 0 .25rem; font-size: 1rem; color: var(--accent); }
+
+/* ---------- Two-column blocks ---------- */
+.alt { background: #e7eaf7; }
+
+/* ---------- Learn: stair-step journey + skill tiles ---------- */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); align-items: end; gap: 1rem; margin: 0 0 2rem; padding: 0; list-style: none; }
+.step { position: relative; overflow: hidden; padding: 1.25rem 1.25rem 1.75rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+.step:nth-child(1) { min-height: 160px; }
+.step:nth-child(2) { min-height: 210px; }
+.step.top { min-height: 260px; background: var(--ink); border-color: var(--ink); color: #fff; }
+.step.reveal { transition: opacity .6s, transform .25s, border-color .25s; }
+.step.reveal.in:hover { transform: translateY(-6px); border-color: var(--accent); }
+.step b { display: block; font: 800 clamp(3rem, 7vw, 5rem)/1 var(--display); color: transparent; -webkit-text-stroke: 2px var(--accent); }
+.step h3 { margin: .4rem 0 .35rem; font-size: 1.5rem; }
+.step p { margin: 0; color: var(--steel); font-size: .95rem; line-height: 1.45; }
+.step.top p { color: #bcc4e6; }
+.step::after { content: ""; position: absolute; left: 0; bottom: 0; height: 5px; width: var(--w); background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; transition: transform 1s .3s; }
+.step.in::after { transform: scaleX(1); }
+.step-gear { position: absolute; right: -22px; top: -22px; width: 110px; height: 110px; opacity: .18; animation: spin 24s linear infinite; }
+
+.skills-row { display: grid; grid-template-columns: 1.6fr 1fr; gap: 2rem; }
+.skills-row h3 { margin-bottom: .75rem; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .75rem; margin: 0; padding: 0; list-style: none; }
+.tiles li { display: flex; align-items: center; gap: .7rem; padding: .75rem 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 14px; font-weight: 600; transition: transform .25s, border-color .25s; }
+.tiles li:hover { transform: translateY(-3px); border-color: var(--accent); }
+.tiles .ic { box-sizing: content-box; width: 1.2rem; height: 1.2rem; padding: .55rem; border-radius: 50%; background: rgba(31, 107, 255, .12); color: var(--accent); transition: background .25s, color .25s; }
+.tiles li:hover .ic { background: var(--accent); color: #fff; }
+
+/* ---------- Nav toggle (phones and tablets) ---------- */
+.nav-actions { display: flex; align-items: center; gap: .5rem; }
+.nav-toggle { display: none; width: 42px; height: 38px; place-content: center; gap: 4px; padding: 0; background: transparent; border: 2px solid var(--ink); border-radius: 10px; cursor: pointer; }
+.nav-toggle span { width: 18px; height: 2px; background: var(--ink); transition: transform .25s, opacity .25s; }
+.nav.open .nav-toggle span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav.open .nav-toggle span:nth-child(2) { opacity: 0; }
+.nav.open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ---------- Vector illustrations ---------- */
+.visuals { display: grid; gap: 1rem; }
+.engine { padding: 1rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; text-align: center; }
+.engine svg { width: 100%; max-width: 300px; }
+.engine small { display: block; color: var(--steel); }
+.e-line { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
+.e-fill { fill: var(--accent); stroke: var(--ink); stroke-width: 3; }
+.e-hub { fill: var(--ink); }
+.e-ghost { fill: none; stroke: var(--line); stroke-width: 3; stroke-dasharray: 6 6; }
+.e-spark { fill: var(--spark); transform-box: fill-box; transform-origin: center; animation: flash 1s ease-in-out infinite alternate; }
+@keyframes flash { from { transform: scale(.5); opacity: .5; } to { transform: scale(1.3); opacity: 1; } }
+
+.line-art { display: block; width: 100%; height: clamp(110px, 16vw, 170px); margin-bottom: 1.5rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; }
+.la-ink { fill: var(--ink); }
+.la-acc { fill: var(--accent); }
+.la-spark { fill: var(--spark); stroke: var(--ink); stroke-width: 3; }
+.la-stroke { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.la-spin { animation: spin 14s linear infinite; }
+.la-spin.back { animation-direction: reverse; }
+.fast { animation: spin 3s linear infinite; }
+.box { animation: ride 16s linear infinite; }
+.arm1 { animation: sway1 3.2s ease-in-out infinite alternate; }
+.arm2 { animation: sway2 2.1s ease-in-out infinite alternate; }
+@keyframes ride { from { transform: translateX(-80px); } to { transform: translateX(1280px); } }
+@keyframes sway1 { from { transform: rotate(-24deg); } to { transform: rotate(22deg); } }
+@keyframes sway2 { from { transform: rotate(38deg); } to { transform: rotate(-30deg); } }
+
+.contact { position: relative; overflow: hidden; }
+.contact .wrap { position: relative; z-index: 1; }
+.contact .btn { max-width: 100%; overflow-wrap: anywhere; }
+.bg-gear.c1 { width: min(40vw, 380px); left: -6%; top: -30%; fill: #fff; opacity: .07; }
+.bg-gear.c2 { width: min(28vw, 260px); right: -3%; bottom: -25%; fill: var(--spark); opacity: .3; }
+.bg-gear.c2 .spin { animation: spin-rev 22s linear infinite; }
+
+/* ---------- Contact ---------- */
+.contact { background: var(--ink); color: #fff; text-align: center; }
+.contact p { margin-inline: auto; color: #bcc4e6; }
+.contact .actions { justify-content: center; }
+.contact .btn { border-color: #fff; color: #fff; }
+.contact .btn:hover { background: var(--accent); border-color: var(--accent); }
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s, transform .6s; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ---------- Extra motion ---------- */
+.progress { position: fixed; inset: 0 0 auto; height: 4px; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; z-index: 20; }
+.type { color: var(--ink); font-weight: 600; }
+.caret { display: inline-block; width: 3px; height: 1.1em; margin-left: 3px; vertical-align: -.2em; background: var(--accent); animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.float { position: absolute; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--card); border: 2px solid var(--ink); animation: float 4s ease-in-out infinite alternate; }
+.float .ic { width: 28px; height: 28px; }
+@keyframes float { from { transform: translateY(0) rotate(-6deg); } to { transform: translateY(-16px) rotate(8deg); } }
+
+.belt { overflow: hidden; background: var(--spark); color: var(--ink); padding: .9rem 0; border-block: 2px solid var(--ink); }
+.belt-track { display: flex; width: max-content; animation: belt 32s linear infinite; }
+.belt:hover .belt-track { animation-play-state: paused; }
+.belt span { display: flex; align-items: center; gap: .6rem; margin-right: 2.5rem; font: 700 1.25rem var(--display); letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+@keyframes belt { to { transform: translateX(-50%); } }
+
+.job::before { animation: pulse 2.4s infinite; }
+@keyframes pulse { to { box-shadow: 0 0 0 12px rgba(31, 107, 255, 0); } from { box-shadow: 0 0 0 0 rgba(31, 107, 255, .5); } }
+
+/* ---------- Hero as an engineering drawing ---------- */
+
+
+.status { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin: 0 0 1.25rem; padding: 0; list-style: none; }
+.status li { display: flex; align-items: center; gap: .5rem; padding: .3rem .8rem; background: var(--card); border: 1px solid var(--line); border-radius: 99px; font-size: .9rem; font-weight: 500; }
+.status .live::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+
+.current { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2.5rem; width: 100%; max-width: 760px; margin: 2rem auto 0; text-align: left; padding: 1.25rem 1.5rem; background: var(--card); border: 2px solid var(--ink); border-radius: var(--radius); animation: rise .7s 1.2s both; }
+.current small { display: block; color: var(--accent); font-weight: 600; }
+.current b { display: block; font: 800 1.75rem/1.1 var(--display); }
+.current span { color: var(--steel); }
+.current .chips { flex: 1 1 260px; }
+
+.kicker { margin: 0 0 .35rem; color: var(--accent); font-weight: 600; }
+.job::after { content: attr(data-year); position: absolute; right: 0; top: 0; font: 800 clamp(2.5rem, 8vw, 4rem)/1 var(--display); color: var(--line); pointer-events: none; }
+.nav .btn.solid { color: #fff; padding: .4rem 1.1rem; }
+
+.hero .float { translate: calc(var(--mx, 0) * 22px) calc(var(--my, 0) * 22px); transition: translate .3s ease-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cut { stroke-dashoffset: 0; fill: var(--to); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 800px) {
+  .nav-toggle { display: grid; }
+  .nav ul { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: .5rem clamp(1.25rem, 4vw, 4rem) 1rem; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .nav.open ul { display: flex; }
+  .nav ul a { display: block; padding: .7rem 0; }
+  .about, .skills-row { grid-template-columns: 1fr; }
+  section { padding: 2.25rem 0; }
+}
+@media (max-width: 600px) {
+  .float { display: none; }
+}
+@media (max-width: 900px) {
+  .bento { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .steps { grid-template-columns: 1fr; align-items: stretch; }
+  .step:nth-child(n) { min-height: 0; }
+}
+@media (max-width: 560px) {
+  .bento { grid-template-columns: 1fr; }
+  .bento .card:nth-child(n) { grid-column: auto; }
+}
+@media (max-width: 480px) {
+  .stat { padding: 1.5rem .5rem; }
+  .stat span { font-size: .8rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .gauge .fill { stroke-dashoffset: 10; }
+}
+</style>
+</head>
+
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- Icon sprite: reuse with <svg class="ic"><use href="#i-name"/></svg> -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><circle cx="12" cy="12" r="7"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M12 14l4-4M3.34 19a10 10 0 1117.32 0"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="M21.3 15.3a2.4 2.4 0 010 3.4l-2.6 2.6a2.4 2.4 0 01-3.4 0L2.7 8.7a2.4 2.4 0 010-3.4l2.6-2.6a2.4 2.4 0 013.4 0zM14.5 12.5l2-2M11.5 9.5l2-2M8.5 6.5l2-2M17.5 15.5l2-2"/></symbol>
+  <symbol id="i-scope" viewBox="0 0 24 24"><path d="M6 18h8M3 22h18M14 22a7 7 0 100-14h-1M9 14h2M9 12a2 2 0 01-2-2V6h6v4a2 2 0 01-2 2zM12 6V3a1 1 0 00-1-1H9a1 1 0 00-1 1v3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2M9 14l2 2 4-4"/></symbol>
+  <symbol id="i-factory" viewBox="0 0 24 24"><path d="M2 20a2 2 0 002 2h16a2 2 0 002-2V8l-7 5V8l-7 5V4a2 2 0 00-2-2H4a2 2 0 00-2 2zM17 18h1M12 18h1M7 18h1"/></symbol>
+  <symbol id="i-cad" viewBox="0 0 24 24"><path d="M4 20V4l16 16zM8 15v-1M8 12v-1M8 18v-1"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3M8 11h6"/></symbol>
+  <symbol id="i-plan" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 2v4M16 2v4M3 10h18M9 16l2 2 4-4"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M22 7l-8.5 8.5-5-5L2 17M16 7h6v6"/></symbol>
+  <symbol id="i-team" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/><circle cx="9" cy="7" r="4"/></symbol>
+  <symbol id="i-nut" viewBox="0 0 24 24"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-cnc" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="12" rx="2"/><path d="M12 15v4M8 21h8M8 9l3 3 5-5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .4 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.8.7a2 2 0 011.7 2z"/></symbol>
+</svg>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top"><svg class="ic" id="logoGear"><use href="#i-gear"/></svg>Naresh Kumar</a>
+    <nav aria-label="Main">
+      <ul id="menu">
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#expertise">Expertise</a></li>
+        <li><a href="#tools">Tools</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn solid" href="#contact">Hire me</a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <svg class="bg-gear g1" viewBox="-130 -130 260 260" aria-hidden="true"><g class="spin"><path class="gear" data-r="100" data-n="16" data-h="18" data-hole="34"/></g></svg>
+    <svg class="bg-gear g2" viewBox="-130 -130 260 260" aria-hidden="true"><g class="spin"><path class="gear" data-r="100" data-n="10" data-h="20" data-hole="30"/></g></svg>
+    <span class="float" style="top:16%;left:9%"><svg class="ic"><use href="#i-wrench"/></svg></span>
+    <span class="float" style="top:30%;right:18%;animation-delay:-2.4s"><svg class="ic"><use href="#i-nut"/></svg></span>
+    <span class="float" style="top:58%;right:8%;animation-delay:-1.3s"><svg class="ic"><use href="#i-ruler"/></svg></span>
+
+    <div class="wrap hero-in">
+      <ul class="status">
+        <li class="live">Engineer A at IND-Sphinx</li>
+        <li>Parwanoo, Himachal Pradesh</li>
+        <li>11 years in engineering</li>
+      </ul>
+      <h1 class="name">
+        <svg viewBox="0 0 700 320" role="img" aria-label="Naresh Kumar">
+          <text class="cut" x="350" y="140" textLength="660" lengthAdjust="spacingAndGlyphs">NARESH</text>
+          <text class="cut hot" x="350" y="290" textLength="660" lengthAdjust="spacingAndGlyphs">KUMAR</text>
+        </svg>
+      </h1>
+      <p class="role">Mechanical engineer from Himachal. I take care of <b class="type" id="type">production</b><span class="caret"></span></p>
+      <div class="actions">
+        <a class="btn solid" href="#contact"><svg class="ic"><use href="#i-mail"/></svg>Get in touch</a>
+        <a class="btn ghost" href="#experience">See my work</a>
+      </div>
+      <div class="current">
+        <div>
+          <small>Currently</small>
+          <b>Engineer A</b>
+          <span>IND-Sphinx Precision Ltd., Parwanoo</span>
+        </div>
+        <ul class="chips">
+          <li>SAP</li><li>AutoCAD</li><li>7QC Tools</li><li>Rollomatic CNC</li><li>Preventive maintenance</li><li>OEE</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tool belt -->
+  <div class="belt" aria-hidden="true">
+    <div class="belt-track" id="belt">
+      <span><svg class="ic"><use href="#i-cnc"/></svg>Rollomatic CNC</span>
+      <span><svg class="ic"><use href="#i-gauge"/></svg>OEE 90%</span>
+      <span><svg class="ic"><use href="#i-ruler"/></svg>Vernier</span>
+      <span><svg class="ic"><use href="#i-scope"/></svg>Microscopy</span>
+      <span><svg class="ic"><use href="#i-cad"/></svg>AutoCAD</span>
+      <span><svg class="ic"><use href="#i-wrench"/></svg>TPM</span>
+      <span><svg class="ic"><use href="#i-search"/></svg>Root cause analysis</span>
+      <span><svg class="ic"><use href="#i-check"/></svg>7QC Tools</span>
+    </div>
+  </div>
+
+  <!-- Key numbers -->
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><b data-count="11" data-suffix="+">0</b><span>Years in engineering</span></div>
+      <div class="stat"><b data-count="40">0</b><span>People led</span></div>
+      <div class="stat"><b data-count="90" data-suffix="%">0</b><span>OEE benchmark</span></div>
+    </div>
+  </div>
+
+  <!-- Profile + OEE gauge -->
+  <section id="profile">
+    <div class="wrap about">
+      <div class="reveal">
+        <h2>Profile</h2>
+        <p>I keep machines running and production on target. At IND-Sphinx Precision Ltd. I lead a team of 40 and plan maintenance so equipment stays reliable and quality standards hold.</p>
+        <p>My strategic maintenance schedules cut equipment downtime, and a recent efficiency initiative brought us to a steady 90% operational performance, raising output and lowering cost.</p>
+        <p>I also mentor junior engineers and run training workshops on production techniques and equipment management.</p>
+      </div>
+      <div class="visuals">
+      <div class="gauge reveal" id="gauge">
+        <svg viewBox="0 0 200 120" role="img" aria-label="Overall equipment efficiency 90 percent">
+          <path class="track" pathLength="100" d="M20 100 A80 80 0 0 1 180 100"/>
+          <path class="fill" pathLength="100" d="M20 100 A80 80 0 0 1 180 100"/>
+          <text x="100" y="98">90%</text>
+        </svg>
+        <small>Overall equipment efficiency</small>
+      </div>
+        <div class="engine reveal">
+          <svg id="engine" viewBox="0 0 320 220" role="img" aria-label="Animated piston and crankshaft">
+            <rect class="e-line" x="122" y="24" width="76" height="132" rx="6"/>
+            <circle class="e-ghost" cx="160" cy="170" r="44"/>
+            <circle class="e-spark" cx="160" cy="34" r="8"/>
+            <rect class="e-fill" id="eng-piston" x="129" y="54" width="62" height="36" rx="5"/>
+            <line class="e-line" id="eng-rod" x1="160" y1="72" x2="160" y2="142"/>
+            <line class="e-line" id="eng-arm" x1="160" y1="170" x2="160" y2="142"/>
+            <circle class="e-fill" id="eng-pin" cx="160" cy="142" r="7"/>
+            <circle class="e-fill" id="eng-wrist" cx="160" cy="72" r="5"/>
+            <circle class="e-hub" cx="160" cy="170" r="9"/>
+          </svg>
+          <small>Piston and crank, always moving</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="alt">
+    <div class="wrap">
+      <p class="kicker">Climb</p>
+      <h2>The climb</h2>
+      <div class="path reveal" aria-label="Career progression">
+        <span>Diploma Engineer Trainee</span><i>›</i><span>Senior Diploma Engineer</span><i>›</i><span>Engineer A</span>
+      </div>
+
+      <div class="timeline">
+        <article class="job reveal" data-year="2015">
+          <time>July 2015 to now, 11 years and counting</time>
+          <h3>Engineer A, IND-Sphinx Precision Ltd., Parwanoo</h3>
+          <ul>
+            <li>Run the full production workflow with cross-functional teams, aligning operations with quality standards.</li>
+            <li>Lead and mentor a team of 40, and train them on production techniques and equipment care.</li>
+            <li>Write and carry out preventive maintenance plans for critical machinery, raising uptime and reliability.</li>
+            <li>Analyse production metrics to find trends and inefficiencies, then drive improvements.</li>
+            <li>Keep SOPs, safety rules, documentation and audit records current.</li>
+            <li>Work with management on initiatives that raise efficiency and lower operating cost.</li>
+          </ul>
+          <h4>Highlights</h4>
+          <ul>
+            <li>Held a consistent 90% overall equipment efficiency target.</li>
+            <li>Set up data-driven monitoring and key performance indicators that sharpened decisions.</li>
+            <li>Operate Rollomatic GrindSmart CNC600XD, CNC620, CNC-24, CNC2000XR and Nano 5 machines.</li>
+          </ul>
+        </article>
+
+        <article class="job reveal" data-year="2015">
+          <time>January 2015, one month</time>
+          <h3>Industrial Trainee, HRTC, Jassur</h3>
+          <ul>
+            <li>Completed a 4-week industrial training in mechanical operations and maintenance.</li>
+            <li>Assisted with production tasks, troubleshooting and machinery upkeep while following safety protocols.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise -->
+  <section id="expertise">
+    <div class="wrap">
+      <p class="kicker">Skills</p>
+      <h2>What I do</h2>
+      <div class="grid bento">
+        <div class="card reveal"><svg class="ic"><use href="#i-plan"/></svg><div><h3>Maintenance strategy</h3><p>Planning and scheduling that keeps machines reliable.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-wrench"/></svg><div><h3>Predictive and preventive</h3><p>Fewer failures and a smoother production flow.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-gear"/></svg><div><h3>Shutdown planning</h3><p>Planning and executing shutdowns.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-search"/></svg><div><h3>Root cause analysis</h3><p>Troubleshooting that fixes the cause, not the symptom.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-trend"/></svg><div><h3>Production optimisation</h3><p>More output at lower operating cost.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-factory"/></svg><div><h3>Capacity and budgeting</h3><p>Capacity planning, CAPEX and operational budgets.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-check"/></svg><div><h3>Project management</h3><p>Delivering improvement projects with cross-functional teams.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-shield"/></svg><div><h3>Quality and safety</h3><p>Standards, SOPs and safe working practice.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section id="tools" class="alt">
+    <div class="wrap">
+      <p class="kicker">Tools</p>
+      <h2>What I work with</h2>
+      <div class="grid">
+        <div class="card reveal"><svg class="ic"><use href="#i-cnc"/></svg><div><h3>CNC grinding</h3><p>Rollomatic GrindSmart CNC600XD, CNC620, CNC-24, CNC2000XR, Nano 5, Virtual Grind.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-ruler"/></svg><div><h3>Metrology</h3><p>TMM, Carmar, Mohr Roundness Tester, Vernier calipers.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-scope"/></svg><div><h3>Microscopy</h3><p>Microscopy techniques for inspection.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-cad"/></svg><div><h3>AutoCAD</h3><p>2D and 3D drafting.</p></div></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-gauge"/></svg><div><h3>Quality and systems</h3><p>7QC Tools, SAP, MS Office (Word, Excel, PowerPoint).</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="wrap">
+      <p class="kicker">Work</p>
+      <h2>Things I’ve improved</h2>
+      <svg class="line-art" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Animated production line: boxes ride a conveyor while a robot arm swings">
+        <g transform="translate(70 70)"><g class="la-spin"><path class="gear la-acc" data-r="42" data-n="10" data-h="9" data-hole="12" fill-rule="evenodd"/></g></g>
+        <g transform="translate(1130 70)"><g class="la-spin back"><path class="gear la-ink" data-r="42" data-n="10" data-h="9" data-hole="12" fill-rule="evenodd"/></g></g>
+        <rect class="la-ink" x="0" y="122" width="1200" height="14" rx="7"/>
+        <g transform="translate(40 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(120 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(200 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(280 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(360 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(440 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(520 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(600 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(680 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(760 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(840 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(920 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(1000 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(1080 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g><g transform="translate(1160 146)"><g class="fast"><circle class="la-ink" r="11"/><path d="M-11 0H11M0-11V11" stroke="#fff" stroke-width="3"/></g></g>
+        <g class="box" style="animation-delay:-0s"><rect class="la-spark" x="0" y="86" width="46" height="36" rx="5"/><path class="la-stroke" stroke-width="3" d="M0 100H46M23 86V100"/></g><g class="box" style="animation-delay:-4s"><rect class="la-spark" x="0" y="86" width="46" height="36" rx="5"/><path class="la-stroke" stroke-width="3" d="M0 100H46M23 86V100"/></g><g class="box" style="animation-delay:-8s"><rect class="la-spark" x="0" y="86" width="46" height="36" rx="5"/><path class="la-stroke" stroke-width="3" d="M0 100H46M23 86V100"/></g><g class="box" style="animation-delay:-12s"><rect class="la-spark" x="0" y="86" width="46" height="36" rx="5"/><path class="la-stroke" stroke-width="3" d="M0 100H46M23 86V100"/></g>
+        <rect class="la-ink" x="540" y="0" width="120" height="14" rx="4"/>
+        <g transform="translate(600 14)"><g class="arm1">
+          <rect class="la-acc" x="-7" y="0" width="14" height="60" rx="7"/>
+          <g transform="translate(0 60)"><g class="arm2">
+            <rect class="la-ink" x="-5" y="0" width="10" height="42" rx="5"/>
+            <path class="la-stroke" d="M-12 52V42H12V52"/>
+          </g><circle class="la-spark" r="9"/></g>
+        </g></g>
+      </svg>
+      <div class="grid">
+        <div class="card reveal"><svg class="ic"><use href="#i-nut"/></svg><h3>Rejection control</h3></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-nut"/></svg><h3>Improving productivity</h3></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-nut"/></svg><h3>Increasing machine utilisation</h3></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-nut"/></svg><h3>TPM</h3></div>
+        <div class="card reveal"><svg class="ic"><use href="#i-nut"/></svg><h3>OEE</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education + soft skills -->
+  <section class="alt" id="learn">
+    <div class="wrap">
+      <p class="kicker">Learn</p>
+      <h2>Where I learned</h2>
+      <ol class="steps">
+        <li class="step reveal" style="--w:33%"><b>2010</b><h3>10th</h3><p>Aryan Pub. School Anu, HPBOSE Dharamshala</p></li>
+        <li class="step reveal" style="--w:66%"><b>2012</b><h3>12th</h3><p>Gurukul Pub. Sen. Sec. School, HPBOSE Dharamshala</p></li>
+        <li class="step top reveal" style="--w:100%"><svg class="ic step-gear" aria-hidden="true"><use href="#i-gear"/></svg><b>2015</b><h3>Diploma in Mechanical Engineering</h3><p>Govt. Polytechnic, Hamirpur, H.P. Tech. Board, Dharamshala</p></li>
+      </ol>
+
+      <div class="skills-row">
+        <div class="reveal">
+          <h3>Soft skills</h3>
+          <ul class="tiles">
+            <li><svg class="ic"><use href="#i-team"/></svg>Team player</li>
+            <li><svg class="ic"><use href="#i-wrench"/></svg>Problem solver</li>
+            <li><svg class="ic"><use href="#i-gear"/></svg>Multitasking</li>
+            <li><svg class="ic"><use href="#i-clock"/></svg>Time management</li>
+          </ul>
+        </div>
+        <div class="reveal">
+          <h3>Languages</h3>
+          <ul class="tiles">
+            <li><svg class="ic"><use href="#i-chat"/></svg>Hindi</li>
+            <li><svg class="ic"><use href="#i-chat"/></svg>English</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <svg class="bg-gear c1" viewBox="-130 -130 260 260" aria-hidden="true"><g class="spin"><path class="gear" data-r="100" data-n="14" data-h="18" data-hole="32"/></g></svg>
+    <svg class="bg-gear c2" viewBox="-130 -130 260 260" aria-hidden="true"><g class="spin"><path class="gear" data-r="100" data-n="9" data-h="20" data-hole="30"/></g></svg>
+    <div class="wrap">
+      <h2>Let’s get to work.</h2>
+      <p>Open to production, operations and maintenance roles.</p>
+      <div class="actions">
+        <a class="btn" href="mailto:nareshrana999@gmail.com"><svg class="ic"><use href="#i-mail"/></svg>nareshrana999@gmail.com</a>
+        <a class="btn" href="tel:+919816133362"><svg class="ic"><use href="#i-phone"/></svg>+91 98161 33362</a>
+        <a class="btn" href="tel:+917018272177"><svg class="ic"><use href="#i-phone"/></svg>+91 70182 72177</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // 1. Build gear outlines from a few numbers (radius, teeth, tooth height, hole)
+  document.querySelectorAll(".gear").forEach(el => {
+    const { r, n, h, hole } = Object.fromEntries(
+      ["r", "n", "h", "hole"].map(k => [k, +el.dataset[k]])
+    );
+    const step = (Math.PI * 2) / n;
+    const pt = (angle, radius) => `${(Math.cos(angle) * radius).toFixed(1)} ${(Math.sin(angle) * radius).toFixed(1)}`;
+    let d = "";
+    for (let i = 0; i < n; i++) {
+      const a = i * step;
+      d += `${i ? "L" : "M"}${pt(a - step * .26, r)} L${pt(a - step * .13, r + h)} L${pt(a + step * .13, r + h)} L${pt(a + step * .26, r)} `;
+    }
+    d += `Z M${hole} 0 A${hole} ${hole} 0 1 0 ${-hole} 0 A${hole} ${hole} 0 1 0 ${hole} 0 Z`;
+    el.setAttribute("d", d);
+  });
+
+  // 2. Reveal on scroll, plus the OEE gauge and number counters
+  const countUp = el => {
+    const target = +el.dataset.count, suffix = el.dataset.suffix || "", start = performance.now();
+    const tick = now => {
+      const t = Math.min((now - start) / 1400, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3))) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("in");
+      entry.target.querySelectorAll?.("[data-count]").forEach(countUp);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".reveal, .stats").forEach(el => observer.observe(el));
+
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // 4. Typewriter for the role line
+  const typeEl = document.getElementById("type");
+  const words = ["production.", "maintenance.", "operations.", "root cause analysis.", "OEE improvement."];
+  if (!calm) {
+    let w = 0, c = 0, deleting = false;
+    const type = () => {
+      const word = words[w];
+      c += deleting ? -1 : 1;
+      typeEl.textContent = word.slice(0, c);
+      let wait = deleting ? 40 : 90;
+      if (!deleting && c === word.length) { deleting = true; wait = 1400; }
+      else if (deleting && c === 0) { deleting = false; w = (w + 1) % words.length; wait = 300; }
+      setTimeout(type, wait);
+    };
+    type();
+  }
+
+  // 5. Tool belt: duplicate the items so the loop is seamless
+  const belt = document.getElementById("belt");
+  belt.append(...[...belt.children].map(el => el.cloneNode(true)));
+
+  // 5b. Hero parallax: gears and floating tools follow the pointer
+  const hero = document.querySelector(".hero");
+  if (!calm) {
+    hero.addEventListener("pointermove", e => {
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty("--mx", ((e.clientX - r.left) / r.width - .5) * 2);
+      hero.style.setProperty("--my", ((e.clientY - r.top) / r.height - .5) * 2);
+    });
+  }
+
+  // 5c. Card spotlight follows the pointer
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("pointermove", e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--x", `${e.clientX - r.left}px`);
+      card.style.setProperty("--y", `${e.clientY - r.top}px`);
+    });
+  });
+
+  // 5d. Mobile menu
+  const nav = document.querySelector(".nav");
+  const toggle = document.querySelector(".nav-toggle");
+  const setMenu = open => { nav.classList.toggle("open", open); toggle.setAttribute("aria-expanded", open); };
+  toggle.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+  nav.querySelectorAll("ul a").forEach(a => a.addEventListener("click", () => setMenu(false)));
+
+  // 5e. Piston and crank: simple slider-crank geometry, runs only while visible
+  const engine = document.getElementById("engine");
+  if (engine && !calm) {
+    const $ = id => document.getElementById(id);
+    const piston = $("eng-piston"), rod = $("eng-rod"), arm = $("eng-arm"), pin = $("eng-pin"), wrist = $("eng-wrist");
+    const cx = 160, cy = 170, crank = 28, rodLen = 70;
+    let angle = 0, visible = false;
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(engine);
+    const frame = () => {
+      if (visible) {
+        angle += 0.045;
+        const px = cx + crank * Math.sin(angle), py = cy - crank * Math.cos(angle);
+        const y = py - Math.sqrt(rodLen ** 2 - (px - cx) ** 2);
+        piston.setAttribute("y", y - 18);
+        wrist.setAttribute("cy", y);
+        rod.setAttribute("y1", y); rod.setAttribute("x2", px); rod.setAttribute("y2", py);
+        arm.setAttribute("x2", px); arm.setAttribute("y2", py);
+        pin.setAttribute("cx", px); pin.setAttribute("cy", py);
+      }
+      requestAnimationFrame(frame);
+    };
+    frame();
+  }
+
+  // 6. Scroll progress bar and a logo gear that turns as you scroll
+  const bar = document.getElementById("progress");
+  const logoGear = document.getElementById("logoGear");
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+    if (!calm) logoGear.style.transform = `rotate(${scrollY / 3}deg)`;
+  };
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
